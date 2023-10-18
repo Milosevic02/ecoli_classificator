@@ -23,3 +23,12 @@ model = tf.keras.models.Sequential([
 ])
 
 model.compile(optimizer = 'adam',loss = 'sparse_categorical_crossentropy',metrics = ['accuracy'])
+
+def encode_labels(labels):
+    label_mapping = {"cp": 0, "im": 1, "imS": 2, "imL": 3, "imU": 4, "om": 5, "omL": 6, "pp": 7}
+    encoded_labels = [label_mapping[label] for label in labels]
+    return encoded_labels
+
+y_train_numeric = encode_labels(y_train)
+y_test_numeric = encode_labels(y_test)
+
