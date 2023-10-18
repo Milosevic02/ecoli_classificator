@@ -32,3 +32,12 @@ def encode_labels(labels):
 y_train_numeric = encode_labels(y_train)
 y_test_numeric = encode_labels(y_test)
 
+X_train_arr = np.array(X_train)
+X_test_arr = np.array(X_test)
+
+y_train_numeric = np.array(y_train_numeric)
+y_test_numeric = np.array(y_test_numeric)
+
+r = model.fit(X_train_arr, y_train_numeric, validation_data=(X_test_arr, y_test_numeric), epochs=200,batch_size=32)
+print("Train score:", model.evaluate(X_train_arr, y_train_numeric))
+print("Test score:", model.evaluate(X_test_arr, y_test_numeric))
