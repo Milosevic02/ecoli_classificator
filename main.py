@@ -75,5 +75,22 @@ def plot_confusion_matrix(cm, classes,
       plt.text(j, i, format(cm[i, j], fmt),
                horizontalalignment="center",
                color="white" if cm[i, j] > thresh else "black")
-      
 
+  plt.tight_layout()
+  plt.ylabel('True label')
+  plt.xlabel('Predicted label')
+  plt.show()
+
+
+p_test = model.predict(X_test_arr).argmax(axis=1)
+cm = confusion_matrix(y_test_numeric, p_test)
+plot_confusion_matrix(cm, list(range(8)))
+
+y_test_arr = np.array(y_test)
+
+def reverse_encode_labels(labels):
+    label_mapping = {0:"cp",1: "im",2: "imS",3: "imL",4:"imU",5:"om",6 : "omL",7: "pp"}
+    encoded_labels = [label_mapping[label] for label in labels]
+    return encoded_labels
+
+p_test_string = reverse_encode_labels(p_test)
