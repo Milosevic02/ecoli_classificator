@@ -94,3 +94,7 @@ def reverse_encode_labels(labels):
     return encoded_labels
 
 p_test_string = reverse_encode_labels(p_test)
+misclassified_idx = np.where(p_test != y_test_numeric)[0]
+i = np.random.choice(misclassified_idx)
+print("True label : %s Predicted: %s" %(y_test_arr[i],p_test_string[i]))
+print(X_test_arr[i])
