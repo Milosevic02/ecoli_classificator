@@ -41,3 +41,15 @@ y_test_numeric = np.array(y_test_numeric)
 r = model.fit(X_train_arr, y_train_numeric, validation_data=(X_test_arr, y_test_numeric), epochs=200,batch_size=32)
 print("Train score:", model.evaluate(X_train_arr, y_train_numeric))
 print("Test score:", model.evaluate(X_test_arr, y_test_numeric))
+
+
+import matplotlib.pyplot as plt
+plt.plot(r.history['loss'], label='loss')
+plt.plot(r.history['val_loss'], label='val_loss')
+plt.legend()
+plt.show()
+
+plt.plot(r.history['accuracy'], label='acc')
+plt.plot(r.history['val_accuracy'], label='val_acc')
+plt.legend()
+plt.show()
